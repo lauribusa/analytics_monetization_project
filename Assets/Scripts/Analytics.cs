@@ -32,6 +32,13 @@ public class Analytics : MonoBehaviour
 		LogEvent_parameterlessEvent("Event_parameterless");
 	}
 
+	public void ButtonEventParameters()
+	{
+
+
+		//LogEvent_paramsEvent("Event_params", string["key"]);
+	}
+
 	public void LogEvent_parameterlessEvent(string eventName)
 	{
 		FB.LogAppEvent(
@@ -39,7 +46,7 @@ public class Analytics : MonoBehaviour
 		);
 	}
 
-	public void LogEvent_paramsEvent(string eventName, string[] key, object[] values, double valToSum)
+	public void LogEvent_paramsEvent(string eventName, string[] key, object[] values)
 	{
 		if(key.Length != values.Length)
 		{
@@ -54,11 +61,12 @@ public class Analytics : MonoBehaviour
 			parameters[key[i]] = values[i];
 
 		}
-		FB.LogAppEvent(
-			eventName,
-			(float)valToSum,
-			parameters
-		);
+		
+			FB.LogAppEvent(
+				eventName,
+				parameters : parameters
+			);
+		
 	}
 	// Update is called once per frame
 	void Update()
