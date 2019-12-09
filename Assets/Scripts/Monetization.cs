@@ -9,9 +9,11 @@ public class Monetization : MonoBehaviour, IUnityAdsListener
 
 	public Image rewardVideoIndicator;
 	public Image interstitialAdIndicator;
-	public string gameId = "3390432";
-	public string interstitialId = "interstitialVideo";
-	public string rewardedVideo = "testVideo";
+
+	string gameId = "3390432";
+	string interstitialId = "interstitialVideo";
+	string rewardedVideo = "testVideo";
+
 	void Start()
 	{
 		// Set interactivity to be dependent on the Placement’s status:
@@ -71,7 +73,7 @@ public class Monetization : MonoBehaviour, IUnityAdsListener
 
 	public void OnUnityAdsDidError(string message)
 	{
-		// Log the error.
+		Debug.LogError(message);
 	}
 
 	public void OnUnityAdsDidStart(string placementId)
@@ -79,8 +81,5 @@ public class Monetization : MonoBehaviour, IUnityAdsListener
 		// Optional actions to take when the end-users triggers an ad.
 	}
 
-	private void Update()
-	{
-		
-	}
+
 }
