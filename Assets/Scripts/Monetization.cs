@@ -9,19 +9,13 @@ public class Monetization : MonoBehaviour, IUnityAdsListener
 
 	public Image rewardVideoIndicator;
 	public Image interstitialAdIndicator;
-
-	string gameId = "3390432";
-	string interstitialId = "interstitialVideo";
-	string rewardedVideo = "testVideo";
+	public UnityAdsScriptableObject UnityAdsSettings; 
 
 	void Start()
 	{
-		// Set interactivity to be dependent on the Placement’s status:
-
-		// Map the ShowRewardedVideo function to the button’s click listener
-		// Initialize the Ads listener and service:
+		
 		Advertisement.AddListener(this);
-		Advertisement.Initialize(gameId, true);
+		Advertisement.Initialize(UnityAdsSettings.gameId, true);
 	}
 
 	// Implement a function for showing a rewarded video ad:
@@ -32,23 +26,23 @@ public class Monetization : MonoBehaviour, IUnityAdsListener
 
 	public void ShowRewardedVideo()
 	{
-		ShowVideo(rewardedVideo);
+		ShowVideo(UnityAdsSettings.rewardedVideoId);
 	}
 
 	public void ShowInterstitialVideo()
 	{
-		ShowVideo(interstitialId);
+		ShowVideo(UnityAdsSettings.interstitialId);
 	}
 	// Implement IUnityAdsListener interface methods:
 	public void OnUnityAdsReady(string placementId)
 	{
 		// If the ready Placement is rewarded, activate the button: 
 		
-		if(placementId == interstitialId)
+		if(placementId == UnityAdsSettings.interstitialId)
 		{
 			interstitialAdIndicator.color = new Color(0, 255, 0);
 		}
-		if(placementId == rewardedVideo)
+		if(placementId == UnityAdsSettings.rewardedVideoId)
 		{
 			rewardVideoIndicator.color = new Color(0, 255, 0);
 		}
